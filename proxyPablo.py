@@ -1,6 +1,6 @@
 
 #!/usr/bin/python
-
+from persistRequests import persist
 import sys
 from paste import httpserver 
 from webob import Request
@@ -19,7 +19,7 @@ db_data_dict['port'] = port
 db_data_dict['proxyServer'] = host
 db_data_dict['timeRange'] = None 
 
-timeDelta = 30 #seconds
+timeDelta = 5 #seconds
 
 
 def timeRangeSet():
@@ -28,14 +28,12 @@ def timeRangeSet():
       db_data_dict['timeRange'] = time.time()
    else:
       if (db_data_dict['timeRange'] + timeDelta ) < time.time():
-      	print "----------------------------"
-      	print "guardando en base de datos"
-      	print db_data_dict['timeRange']
-      	print "----------------------------"
-        #db_data_dict['timeRange'] = time.time()
-      	
-   pprint(db_data_dict) 
 
+      	persist(db_data_dict)
+      	db_data_dict['timeRange'] = time.time()
+        
+      else:
+      	print "new request"
    return True
 
 def requestMaganer(request):
