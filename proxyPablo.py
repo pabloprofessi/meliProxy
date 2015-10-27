@@ -19,7 +19,7 @@ db_data_dict['port'] = port
 db_data_dict['proxyServer'] = host
 db_data_dict['timeRange'] = None 
 
-timeDelta = 5 #seconds
+timeDelta = 30 #seconds
 
 
 def timeRangeSet():
@@ -30,8 +30,10 @@ def timeRangeSet():
       if (db_data_dict['timeRange'] + timeDelta ) < time.time():
 
       	persist(db_data_dict)
+      	for keys in db_data_dict.keys():
+      		if keys not in ['proxyServer','timeRange','port']:
+      			db_data_dict.pop(keys, None)
       	db_data_dict['timeRange'] = time.time()
-        
       else:
       	print "new request"
    return True
