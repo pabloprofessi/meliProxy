@@ -13,11 +13,43 @@ app = bottle.Bottle()
 def show(server, port):
 
    rows = retrive_data(server, port)
-   text = ""
+   text = '''<!DOCTYPE html>
+             <html>
+             <head>
+             <style>
+             table, th, td {
+                 border: 1px solid black;
+                 border-collapse: collapse;
+             }
+             th, td {
+                 padding: 5px;
+             }
+             </style>
+             </head>
+             <body>
+             <h1> ESTADISTICAS DE USO </h1> 
+             <table style="width:100%">
+               <tr>
+                 <th>Id</th>
+                 <th>Servername</th>		
+                 <th>Port</th>
+                 <th>Timerange</th>
+                 <th>Source IP</th>
+                 <th>Source Path</th>
+                 <th>Count</th>
+               </tr>
+             '''
+   temp_text = ""
    for row in rows:
-      temp_text = " | ".join(map(str,row))
-      text = text + temp_text  + "\n"
+      rowString = ""
+      for n in xrange(0,7):
+         rowString = "<td>" + str(row[n]) + "</td>" + rowString
+   
+      temp_text="<tr>" + rowString + "</tr>" + temp_text
 
+   text = text + temp_text  
+   text = text + "</table> </body> </html>"
+   
 
    return text
 
