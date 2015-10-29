@@ -1,6 +1,6 @@
 
 #!/usr/bin/python
-from persistRequests import persist
+from persistRequests import persist, timeDelta
 import sys
 from paste import httpserver 
 from webob import Request
@@ -18,8 +18,6 @@ db_data_dict = {}
 db_data_dict['port'] = port
 db_data_dict['proxyServer'] = host
 db_data_dict['timeRange'] = None 
-
-timeDelta = 30 #seconds
 
 
 def timeRangeSet():

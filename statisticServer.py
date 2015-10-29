@@ -23,6 +23,7 @@ def show(server, port):
              }
              th, td {
                  padding: 5px;
+                 text-align: left;
              }
              </style>
              </head>
@@ -37,19 +38,23 @@ def show(server, port):
                  <th>Source IP</th>
                  <th>Source Path</th>
                  <th>Count</th>
+                 <th>Time Delta(sec)</th>
                </tr>
              '''
    temp_text = ""
    for row in rows:
       rowString = ""
-      for n in xrange(0,7):
-         rowString = "<td>" + str(row[n]) + "</td>" + rowString
-   
+      for n in xrange(0,len(row)):
+         rowString = rowString + "<td>" + str(row[n]) + "</td>"
+         
+
+
       temp_text="<tr>" + rowString + "</tr>" + temp_text
 
    text = text + temp_text  
    text = text + "</table> </body> </html>"
    
+   #print text
 
    return text
 
