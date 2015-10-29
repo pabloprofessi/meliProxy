@@ -32,8 +32,8 @@ def timeRangeSet():
       		if keys not in ['proxyServer','timeRange','port']:
       			db_data_dict.pop(keys, None)
       	db_data_dict['timeRange'] = time.time()
-      else:
-      	print "new request"
+      #else:
+      	#print "new request"
    return True
 
 def requestMaganer(request):
@@ -58,6 +58,11 @@ def wrapped_proxy_app(environ, start_response):
    return proxy_app(environ, start_response)
 
 
+def testingApp(environ, start_response):
+   requestMaganer(Request(environ))
+   start_response('200 OK', [('Content-Type','text/html')])
+   return [b"Hello World"]
 
-httpserver.serve(wrapped_proxy_app, host=host, port=port)
+
+httpserver.serve(testingApp, host=host, port=port)
 
