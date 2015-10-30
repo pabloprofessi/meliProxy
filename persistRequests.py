@@ -7,7 +7,7 @@ import time
 
 
 global timeDelta #seconds
-timeDelta = 45
+timeDelta = 6
 
 
 def to_interval(ptimeRange):

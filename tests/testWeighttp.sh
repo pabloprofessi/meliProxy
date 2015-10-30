@@ -1,5 +1,5 @@
 
-weighttp -n 50000 -c 20 -t 20 -k  "http://127.0.0.1:8080/categories/MLA97994"
+weighttp -n 100000 -c 20 -t 20 -k "http://127.0.0.1:8888/categories/MLA97994B"
 
 
 

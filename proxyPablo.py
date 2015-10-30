@@ -61,8 +61,8 @@ def wrapped_proxy_app(environ, start_response):
 def testingApp(environ, start_response):
    requestMaganer(Request(environ))
    start_response('200 OK', [('Content-Type','text/html')])
-   return [b"Hello World"]
+   return [b"*"]
 
 
-httpserver.serve(testingApp, host=host, port=port)
+httpserver.serve(wrapped_proxy_app, host=host, port=port)
 
